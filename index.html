@@ -18,54 +18,50 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
         crossorigin="anonymous">
 
-
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                asdas
-            </div>
-
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+            <button id="btn-collapse" type="button" class="btn btn-primary btn-xs " data-toggle="offcanvas"><span class=" glyphicon glyphicon-menu-hamburger"></span></button>
         </div>
-    </nav>
-    <div class="container-fluid">
-        <div class="row">
+        <!--/.nav-collapse -->
+    </div>
+    <!--/.navbar -->
 
-            <div id="navbar" class="col-md-2 sidebar hidden-xs">
-                <br>
-                <ul class="nav nav-sidebar">
-                    <li><input id="filter" type="text" data-bind="value:currentFilter, valueUpdate:'keyup'" placeholder="Filter..."></li>
-                </ul>
-
-                <ul class="nav nav-sidebar" data-bind="foreach: filterLocations">
+    <div class="row-offcanvas row-offcanvas-left">
+        <div id="sidebar" class="sidebar-offcanvas">
+            <div class="col-md-12">
+                <h3>Road trip</h3>
+                <input id="filter" type="text" data-bind="value:currentFilter, valueUpdate:'keyup'" placeholder="Filter...">
+                <ul class="nav nav-pills nav-stacked" data-bind="foreach: filterLocations">
                     <li><a onclick="selectMarker(this)" data-bind="text: description"></a></li>
                 </ul>
             </div>
-
-            <div class="col-md-10 main">
-                <div id="map" class="divfoo"></div>
-            </div>
-
-
         </div>
-    </div>
+        <div id="main">
+            <div class="col-md-12">
+                <div id="map" class="divfoo"></div>
+
+            </div>
+        </div>
+        <!--/row-offcanvas -->
 
 
-    <!--Import jQuery -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
 
-    <script type='text/javascript' src='js/knockout-3.4.2.js'></script>
-    <script type='text/javascript' src='js/app.js'></script>
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+        <script type='text/javascript' src='js/knockout-3.4.2.js'></script>
+        <script type='text/javascript' src='js/app.js'></script>
 
 
-    <!--Maps JavaScript API-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXicH2IR8i_lh5B8Sgep39Ut5pKKEjKBQ&callback=initMap" async
-        defer></script>
+        <!--Maps JavaScript API-->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXicH2IR8i_lh5B8Sgep39Ut5pKKEjKBQ&callback=initMap" async
+            defer></script>
 
 </body>
 
