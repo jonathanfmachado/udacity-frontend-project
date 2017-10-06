@@ -3,7 +3,7 @@ var Location = function (description, latitude, longitude) {
     this.description = ko.observable(description);
     this.latitude = ko.observable(latitude);
     this.longitude = ko.observable(longitude);
-}
+};
 
 // View
 var AppViewModel = function () {
@@ -36,20 +36,19 @@ var AppViewModel = function () {
     // If filterLocations changes, the markers displayed should also change
     this.filterLocations.subscribe(function (filter_array) {
         for (var i = 0; i < markers.length; i++) {
-            markers[0];
             exist = false;
             for (var j = 0; j < filter_array.length; j++) {
                 if (markers[i].title == filter_array[j].description()) {
                     exist = true;
                     markers[i].setMap(map);
                 }
-            };
+            }
             if (!exist) {
                 markers[i].setMap(null);
-            };
-        };
+            }
+        }
     });
-}
+};
 
 // Checks if a given string 'starts with' a second given string
 var stringStartsWith = function (string, startsWith) {
@@ -67,8 +66,8 @@ function selectMarker(element) {
         if (markers[i].title == element.text) {
             google.maps.event.trigger(markers[i], 'click');
         }
-    };
-};
+    }
+}
 
 // Google Maps API
 var map; // Global map variable
@@ -79,7 +78,7 @@ function initMap() {
         zoom: 10
     });
 
-    addMarkers(app_view.filterLocations())
+    addMarkers(app_view.filterLocations());
 }
 
 var markers = [];
@@ -108,15 +107,14 @@ function addMarkers(loc_array) {
             var self = this;
             getFlickerImages(this);
 
-
         });
-    };
+    }
     // Extend the boundaries of the map for each marker
     //map.fitBounds(bounds);
 
-};
+}
 
-app_view = new AppViewModel()
+app_view = new AppViewModel();
 ko.applyBindings(app_view);
 
 
@@ -135,7 +133,7 @@ function getFlickerImages(marker) {
 
     $.ajax({    //By default, all requests are sent asynchronously
         url: url, success: function (result) {
-            img_string = ''
+            img_string = '';
             $.each(result.photos.photo, function(){
                 url = 'https://farm'+this.farm+'.staticflickr.com/'+this.server+'/'+this.id+'_'+this.secret+'_s.jpg';
                 img_string+= '<img src="'+url+'" width="42" height="42">';
@@ -154,11 +152,10 @@ function getFlickerImages(marker) {
         // Data requests that fail are handled gracefully using common fallback techniques (i.e. AJAX error or fail methods)
         error: function (jqXHR, textStatus, errorThrown){
             //A function to be called if the request fails.
-            console.log(textStatus, errorThrown)
             msg = '<div class="alert alert-danger alert-dismissable">'+
             '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'+
-            '<strong>Something went wrong :( </strong> Error: '+ textStatus +'</div>'
-            $('#feedback-messages').append(msg)
+            '<strong>Something went wrong :( </strong> Error: '+ textStatus +'</div>';
+            $('#feedback-messages').append(msg);
 
         }
     });
