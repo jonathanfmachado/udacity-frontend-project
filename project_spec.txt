@@ -35,12 +35,12 @@ Asynchronous API Requests
     [X] All data requests are retrieved in an asynchronous manner.
 
 Error Handling
-    [ ] Data requests that fail are handled gracefully using common fallback techniques (i.e. AJAX error or fail methods). 'Gracefully' means the user isn’t left wondering why a component isn’t working. If an API doesn’t load there should be some visible indication on the page (an alert box is ok) that it didn’t load. Note: You do not need to handle cases where the user goes offline.
+    [X] Data requests that fail are handled gracefully using common fallback techniques (i.e. AJAX error or fail methods). 'Gracefully' means the user isn’t left wondering why a component isn’t working. If an API doesn’t load there should be some visible indication on the page (an alert box is ok) that it didn’t load. Note: You do not need to handle cases where the user goes offline.
 
 Location Details Functionality
 Additional Location Data
-    [ ] Functionality providing additional data about a location is provided and sourced from a 3rd party API. Information can be provided either in the marker’s infoWindow, or in an HTML element in the DOM (a sidebar, the list view, etc.)
-    [ ] Provide attribution for the source of additional data. For example, if using Foursquare, indicate somewhere in your UI and in your README that you are using Foursquare data.
+    [X] Functionality providing additional data about a location is provided and sourced from a 3rd party API. Information can be provided either in the marker’s infoWindow, or in an HTML element in the DOM (a sidebar, the list view, etc.)
+    [X] Provide attribution for the source of additional data. For example, if using Foursquare, indicate somewhere in your UI and in your README that you are using Foursquare data.
 
 Error Free
     [X] Application runs without errors.
@@ -50,10 +50,10 @@ Usability
 
 Documentation
 README
-    [ ] A README file is included detailing all steps required to successfully run the application.
+    [X] A README file is included detailing all steps required to successfully run the application.
 
 Comments
-    [ ] Comments are present and effectively explain longer code procedures.
+    [X] Comments are present and effectively explain longer code procedures.
 
 Code Quality
     [X] Code is formatted with consistent, logical, and easy-to-read formatting as described in the Udacity JavaScript Style Guide.
