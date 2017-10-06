@@ -29,7 +29,7 @@ var AppViewModel = function () {
         }
         else {
             var result = ko.utils.arrayFilter(self.locationArray(), function (loc) {
-                return loc.description.indexOf(self.currentFilter()) !== -1;
+                return loc.description.indexOf(self.currentFilter()) !== -1; // perform a more dynamic / loose filtering of locations
                 //return stringStartsWith(loc.description, self.currentFilter());
             });
             return result;
@@ -43,11 +43,11 @@ var AppViewModel = function () {
             for (var j = 0; j < filter_array.length; j++) {
                 if (markers[i].title == filter_array[j].description) {
                     exist = true;
-                    markers[i].setMap(map);
+                    markers[i].setVisible(true);
                 }
             }
             if (!exist) {
-                markers[i].setMap(null);
+                markers[i].setVisible(false);
             }
         }
     });
