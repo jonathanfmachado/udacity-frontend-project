@@ -2,9 +2,9 @@
 
 // Model
 var Location = function (description, latitude, longitude) {
-    this.description = ko.observable(description);
-    this.latitude = ko.observable(latitude);
-    this.longitude = ko.observable(longitude);
+    this.description = description;
+    this.latitude = latitude;
+    this.longitude = longitude;
 };
 
 // View
@@ -29,7 +29,7 @@ var AppViewModel = function () {
         }
         else {
             var result = ko.utils.arrayFilter(self.locationArray(), function (loc) {
-                return stringStartsWith(loc.description(), self.currentFilter());
+                return stringStartsWith(loc.description, self.currentFilter());
             });
             return result;
         }
@@ -40,7 +40,7 @@ var AppViewModel = function () {
         for (var i = 0; i < markers.length; i++) {
             exist = false;
             for (var j = 0; j < filter_array.length; j++) {
-                if (markers[i].title == filter_array[j].description()) {
+                if (markers[i].title == filter_array[j].description) {
                     exist = true;
                     markers[i].setMap(map);
                 }
@@ -90,9 +90,9 @@ function addMarkers(loc_array) {
 
     for (var i = 0; i < loc_array.length; i++) {
         // Get the position
-        var lat = loc_array[i].latitude();
-        var lng = loc_array[i].longitude();
-        var title = loc_array[i].description();
+        var lat = loc_array[i].latitude;
+        var lng = loc_array[i].longitude;
+        var title = loc_array[i].description;
 
         var marker = new google.maps.Marker({
             map: map,
