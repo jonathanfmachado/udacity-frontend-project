@@ -1,3 +1,5 @@
+/*jshint loopfunc:true */
+
 // Model
 var Location = function (description, latitude, longitude) {
     this.description = ko.observable(description);
@@ -100,18 +102,13 @@ function addMarkers(loc_array) {
             id: i
         });
         markers.push(marker);
-        //bounds.extend(markers[i].position);
 
         // Create an onclick event to open an infowindow at each marker.
         marker.addListener('click', function () {
             var self = this;
             getFlickerImages(this);
-
         });
     }
-    // Extend the boundaries of the map for each marker
-    //map.fitBounds(bounds);
-
 }
 
 app_view = new AppViewModel();
