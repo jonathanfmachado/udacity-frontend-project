@@ -29,7 +29,8 @@ var AppViewModel = function () {
         }
         else {
             var result = ko.utils.arrayFilter(self.locationArray(), function (loc) {
-                return stringStartsWith(loc.description, self.currentFilter());
+                return loc.description.indexOf(self.currentFilter()) !== -1;
+                //return stringStartsWith(loc.description, self.currentFilter());
             });
             return result;
         }
