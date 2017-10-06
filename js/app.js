@@ -30,7 +30,6 @@ var AppViewModel = function () {
         else {
             var result = ko.utils.arrayFilter(self.locationArray(), function (loc) {
                 return loc.description.indexOf(self.currentFilter()) !== -1; // perform a more dynamic / loose filtering of locations
-                //return stringStartsWith(loc.description, self.currentFilter());
             });
             return result;
         }
@@ -53,14 +52,6 @@ var AppViewModel = function () {
     });
 };
 
-// Checks if a given string 'starts with' a second given string
-var stringStartsWith = function (string, startsWith) {
-    string = string || "";
-    if (startsWith.length > string.length)
-        return false;
-    return string.substring(0, startsWith.length).toLowerCase() === startsWith.toLowerCase();
-};
-
 var selected_marker; // Global var
 
 function selectMarker(element) {
@@ -81,19 +72,19 @@ function initMap() {
         zoom: 10
     });
 
-    addMarkers(app_view.filterLocations());
+    addMarkers(appView.filterLocations());
 }
 
 var markers = [];
-function addMarkers(loc_array) {
+function addMarkers(locArray) {
 
     //var bounds = new google.maps.LatLngBounds();
 
-    for (var i = 0; i < loc_array.length; i++) {
+    for (var i = 0; i < locArray.length; i++) {
         // Get the position
-        var lat = loc_array[i].latitude;
-        var lng = loc_array[i].longitude;
-        var title = loc_array[i].description;
+        var lat = locArray[i].latitude;
+        var lng = locArray[i].longitude;
+        var title = locArray[i].description;
 
         var marker = new google.maps.Marker({
             map: map,
@@ -112,8 +103,8 @@ function addMarkers(loc_array) {
     }
 }
 
-app_view = new AppViewModel();
-ko.applyBindings(app_view);
+appView = new AppViewModel();
+ko.applyBindings(appView);
 
 
 $(document).ready(function () {
@@ -131,14 +122,14 @@ function getFlickerImages(marker) {
 
     $.ajax({    //By default, all requests are sent asynchronously
         url: url, success: function (result) {
-            img_string = '';
+            imgString = '';
             $.each(result.photos.photo, function(){
                 url = 'https://farm'+this.farm+'.staticflickr.com/'+this.server+'/'+this.id+'_'+this.secret+'_s.jpg';
-                img_string+= '<img src="'+url+'" width="42" height="42">';
+                imgString+= '<img src="'+url+'" width="42" height="42">';
             });
             // Creates the InfoWindow for the clicked marker
             var infowindow = new google.maps.InfoWindow({
-                content: '<h5>' + marker.title + '</h5>' + img_string + '<p>Images by <a href="https://www.flickr.com"> Flicker</p>'
+                content: '<h5>' + marker.title + '</h5>' + imgString + '<p>Images by <a href="https://www.flickr.com"> Flicker</p>'
             });
             // Add animation to the clicked marker
             marker.setAnimation(google.maps.Animation.BOUNCE);
