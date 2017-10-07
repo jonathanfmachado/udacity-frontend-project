@@ -154,3 +154,8 @@ function getFlickerImages(marker, infowindow) {
         }
     });
 }
+
+function mapError(messageOrEvent, source, lineno, colno, error) {
+    alert('Something went wrong :( \n'+
+        'Google Maps could not be loaded.');
+}
