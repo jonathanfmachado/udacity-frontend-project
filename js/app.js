@@ -71,12 +71,14 @@ function initMap() {
         center: { lat: 47.58413, lng: 13.53086 },
         zoom: 10
     });
+    // Creates the InfoWindow for the clicked marker
+    var infowindow = new google.maps.InfoWindow();
 
-    addMarkers(appView.filterLocations());
+    addMarkers(appView.filterLocations(), infowindow);
 }
 
 var markers = [];
-function addMarkers(locArray) {
+function addMarkers(locArray, infowindow) {
 
     //var bounds = new google.maps.LatLngBounds();
 
@@ -98,7 +100,7 @@ function addMarkers(locArray) {
         // Create an onclick event to open an infowindow at each marker.
         marker.addListener('click', function () {
             var self = this;
-            getFlickerImages(this);
+            getFlickerImages(this, infowindow);
         });
     }
 }
@@ -114,7 +116,7 @@ $(document).ready(function () {
 });
 
 
-function getFlickerImages(marker) {
+function getFlickerImages(marker, infowindow) {
     // Request photos to the Flicker API
 
     // The api_key and format have been hardcoded:
@@ -128,9 +130,9 @@ function getFlickerImages(marker) {
                 imgString+= '<img src="'+url+'" width="42" height="42">';
             });
             // Creates the InfoWindow for the clicked marker
-            var infowindow = new google.maps.InfoWindow({
-                content: '<h5>' + marker.title + '</h5>' + imgString + '<p>Images by <a href="https://www.flickr.com"> Flicker</p>'
-            });
+            infowindow.setContent(
+                '<h5>' + marker.title + '</h5>' + imgString + '<p>Images by <a href="https://www.flickr.com"> Flicker</p>'
+            );
             // Add animation to the clicked marker
             marker.setAnimation(google.maps.Animation.BOUNCE);
             setTimeout(function () {
