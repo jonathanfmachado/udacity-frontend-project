@@ -50,18 +50,21 @@ var AppViewModel = function () {
             }
         }
     });
+
+    this.selectMarker = function(element) {
+        var self = this;
+        for (var i = 0; i < markers.length; i++) {
+            if (markers[i].title == element.description) {
+                google.maps.event.trigger(markers[i], 'click');
+            }
+        }
+    };
+    
+
 };
 
 var selected_marker; // Global var
 
-function selectMarker(element) {
-    var self = this;
-    for (var i = 0; i < markers.length; i++) {
-        if (markers[i].title == element.text) {
-            google.maps.event.trigger(markers[i], 'click');
-        }
-    }
-}
 
 // Google Maps API
 var map; // Global map variable
@@ -137,7 +140,7 @@ function getFlickerImages(marker, infowindow) {
             marker.setAnimation(google.maps.Animation.BOUNCE);
             setTimeout(function () {
                 marker.setAnimation(null);
-            }, 750); // maps duration of one bounce
+            }, 2*700); // maps duration of one bounce
             infowindow.open(map, marker);
         },
         // Data requests that fail are handled gracefully using common fallback techniques (i.e. AJAX error or fail methods)
